@@ -68,8 +68,7 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
-         
-    }   
+          
     }
 
     }
