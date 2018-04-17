@@ -59,6 +59,15 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
+            
+            case "commands":
+            var embed = new Discord.RichEmbed()
+                .addField("commands", "`!info` , `!8ball` , `!ping`", true)
+                .setColor(0xf1be4)
+                .setFooter("Binnenkort meer informatie hier over!") 
+                .setThumbnail(message.author.avatarURL)  
+            message.channel.sendEmbed(embed);
+            break;
         
             
     }
