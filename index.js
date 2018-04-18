@@ -71,7 +71,7 @@ bot.on("message", function(message) {
             .addField("info", "Hey! ik ben BlackBullBot, Mijn taak is om te helpen met discord servers te ondersteunen!", true)
                       .setColor(0xf1be4)
                       .setfooter("Hou #Maintence in de gaten voor verdere info en updates!")
-                      .setThumbnail(message.bot.avatarURL)
+                      .setThumbnail(message.author.avatarURL)
            message.channel.sendEmbed(embed);
             break;
           
