@@ -66,14 +66,7 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embed);
             break;
             
-        case "info":
-        var embed = new Discord.RichEmbed()
-            .addField("info", "Hey! ik ben BlackBullBot, Mijn taak is om te helpen met discord servers te ondersteunen!", true)
-                      .setColor(0xf1be4)
-                      .setfooter("Hou #Maintence in de gaten voor verdere info en updates!")
-                      .setThumbnail(message.author.avatarURL)
-           message.channel.sendEmbed(embed);
-            break;
+     
           
     }
 
