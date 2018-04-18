@@ -8,11 +8,11 @@ function generateHex() {
 }
 
 var fortunes = [
-    "Ja",
-    "Nee",
-    "Misschien",
-    "Fuck off!",
-    "9/10 x wel!",
+    "`Ja`",
+    "`Nee`",
+    "`Misschien`",
+    "`Fuck off!`",
+    "`9/10 x wel!`",
 ];
 
 var bot = new Discord.Client();
