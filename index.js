@@ -36,8 +36,19 @@ bot.on("guildMemberAdd", function(member) {
     }).then(function(roles) {
         member.addRole(role);
     });
+
+bot.on("ready", () => {
+    console.log("Bot Launched...")
+
     bot.user.setStatus("Online")
+
+    bot.user,setGame("Onderhoud!")
+
+    bot.user,setGame("Onderhoud!", "https://realrainbowassie");
 });
+
+    
+
 
 bot.on("message", function(message) {
     if (message.author .equals(bot.user)) return;
@@ -87,19 +98,7 @@ bot.on("message", function(message) {
         message.channel.sendMessage("Verwijderd!")
         break;
 
-        module.exports.run = async (bot, message, args) => {
-
-            if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("je kan deze command niet gebruiken!");
-            if(!args[0]) return message.reply("Gebruik een getal.\n Usage : (PREFIX)purge __number__");
-            message.channel.bulkDelete(args[0]).then(() => {
-              message.channel.send(`Cleared **${args[0]}** messages.`).then(msg => msg.delete(5000));
-            });
-           
-           }
-           
-           module.exports.help = {
-             name: "purge"
-           }
+        
             
 
                    
