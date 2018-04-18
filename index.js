@@ -38,35 +38,6 @@ bot.on("message", function(message) {
 
     var args = message.content.substring(PREFIX.length).split(" ");
 
-    if(cmd == `${prefix}kick`){
-      
-       let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-       if(!kUser) return message.channel.send("Kan persoon niet vinden");
-       let kReason = args.join(" ").slice(22);
-       if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Je hebt hier geen permissie voor!")
-       if(kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Diegene kan niet gekicked worden!")
-
-
-       let kickEmbed = new Discord.RichEmbed()
-       .setDescription("~Kick~")
-       .setColor("#E81F3F")
-       .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
-       .addField("Kicked By", `<@${message.author.id}> with ID ${message.author.id}`)
-       .addField("Kicked In", message.channel)
-       .addField("Tiime", message.createdAt)
-       .addField("Reason", kReason);
-
-       let kickChannel = Message.guild.channels.find(`name`, "warn-system");
-       if(!kickChannel) return message.channel.send("Kan warn-system channel niet vinden.");
-
-       message.guild.member(kUser).kick(kReason);
-       kickChannel.send(kickEmbed)
-
-        return;
-    }
-
-
-
     switch (args[0].toLocaleLowerCase()) {
        case "ping":
             message.channel.sendMessage("Pong!");
@@ -99,6 +70,33 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
+
+            if(cmd == `${prefix}kick`){
+      
+                let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+                if(!kUser) return message.channel.send("Kan persoon niet vinden");
+                let kReason = args.join(" ").slice(22);
+                if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Je hebt hier geen permissie voor!")
+                if(kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Diegene kan niet gekicked worden!")
+         
+         
+                let kickEmbed = new Discord.RichEmbed()
+                .setDescription("~Kick~")
+                .setColor("#E81F3F")
+                .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
+                .addField("Kicked By", `<@${message.author.id}> with ID ${message.author.id}`)
+                .addField("Kicked In", message.channel)
+                .addField("Tiime", message.createdAt)
+                .addField("Reason", kReason);
+         
+                let kickChannel = Message.guild.channels.find(`name`, "warn-system");
+                if(!kickChannel) return message.channel.send("Kan warn-system channel niet vinden.");
+         
+                message.guild.member(kUser).kick(kReason);
+                kickChannel.send(kickEmbed)
+         
+                 return;
+             }        
     
             
     }
