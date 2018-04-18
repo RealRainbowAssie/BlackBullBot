@@ -66,7 +66,7 @@ bot.on("message", function(message) {
             var embed = new Discord.RichEmbed()
                 .addField("Twitch", "https://twitch.tv/realrainbowassie", true)
                 .addField("Support", "Een follow achterlaten zou ik heel erg waarderen")
-                .setColor(0xf1be4)
+                .setColor(x42E8F3)
                 .setFooter("BlackBullBot v.1.0.2!") 
                 .setThumbnail(bot.user.displayAvatarURL)  
             message.channel.sendEmbed(embed);
@@ -75,7 +75,8 @@ bot.on("message", function(message) {
         case "commands":
             var embed = new Discord.RichEmbed()
                 .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
-                .setColor(0xf1be4)
+                .addField("Meer commands?", "Als jij wat mist in de bot geef het dan aan dan kijken wij voor mogelijk heden!", true)
+                .setColor(x42E8F3)
                 .setFooter("BlackBullBot v.1.0.2!") 
                 .setThumbnail(bot.user.displayAvatarURL)  
             message.channel.sendEmbed(embed);
@@ -86,7 +87,7 @@ bot.on("message", function(message) {
                 .addField("8ball", "Type !8ball <vraag> - De bot geeft antwoord op je vraag! ", true)
                 .addField("Ping - Pong", "Type !ping en de bot reageerd - Pong!" ,true)
                 .addField("Commands", "Type !commands en de bot geeft je wat commands wat we hebben")
-                .setColor(0xf1be4)
+                .setColor(x42E8F3)
                 .setFooter("BlackBullBot v.1.0.2!") 
                 .setThumbnail(bot.user.displayAvatarURL)  
             message.channel.sendEmbed(embed);
