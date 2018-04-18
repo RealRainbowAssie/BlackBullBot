@@ -1,6 +1,6 @@
 {
   "name": "rra",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "My own Discord bot",
   "main": "bot.js",
   "author": "RRA",
