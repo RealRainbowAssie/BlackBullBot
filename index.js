@@ -86,6 +86,20 @@ bot.on("message", function(message) {
         message.member.guild.roles.find("name", "Nibber").delete();
         message.channel.sendMessage("Verwijderd!")
         break;
+
+        module.exports.run = async (bot, message, args) => {
+
+            if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("je kan deze command niet gebruiken!");
+            if(!args[0]) return message.reply("Gebruik een getal.\n Usage : (PREFIX)purge __number__");
+            message.channel.bulkDelete(args[0]).then(() => {
+              message.channel.send(`Cleared **${args[0]}** messages.`).then(msg => msg.delete(5000));
+            });
+           
+           }
+           
+           module.exports.help = {
+             name: "purge"
+           }
             
 
                    
