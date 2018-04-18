@@ -57,8 +57,8 @@ bot.on("message", function(message) {
         if (args [1]) message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
             else message.channel.sendMessage("Wat bedoel je?");
             break;
-        default: message.channel.sendMessage("Het ingevoerde command is helaas niet beschikbaar!");  
-            break;
+        default: message.channel.sendMessage("wat voor command wil je?");
+             break;  
         case "sollicitatie":
              message.channel.sendMessage("Voor het sollicitatie formulier ga dan naar #staff-sollicitatie!")
              break;
@@ -68,7 +68,7 @@ bot.on("message", function(message) {
                 .addField("Support", "Een follow achterlaten zou ik heel erg waarderen")
                 .setColor(0xf1be4)
                 .setFooter("BlackBullBot v.1.0.2!") 
-                .setThumbnail(message.author.avatarURL)  
+                .setThumbnail(message.author)  
             message.channel.sendEmbed(embed);
             break;
     
@@ -77,7 +77,16 @@ bot.on("message", function(message) {
                 .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
                 .setColor(0xf1be4)
                 .setFooter("BlackBullBot v.1.0.2!") 
-                .setThumbnail(message.author.avatarURL)  
+                .setThumbnail(message.author)  
+            message.channel.sendEmbed(embed);
+            break;
+
+        case "commands":
+            var embed = new Discord.RichEmbed()
+                .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
+                .setColor(0xf1be4)
+                .setFooter("BlackBullBot v.1.0.2!") 
+                .setThumbnail(message.author)  
             message.channel.sendEmbed(embed);
             break;
         case "vrole":
@@ -102,4 +111,4 @@ bot.on("message", function(message) {
     
     )
 
-bot.login(TOKEN).catch(console.log)
+bot.login(TOKEN).catch(console.log);
