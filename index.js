@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const TOKEN = process.env.BOT_TOKEN
+const TOKEN = "NDM1ODM5MjUxMDM3NTUyNjcx.Dbe0lA.81mjftpjYlZvHgf8u5Z3Cyz-9Ew"; 
 const PREFIX = "!"
 
 function generateHex() {
@@ -12,7 +12,7 @@ var fortunes = [
     "Nee",
     "Misschien",
     "Fuck off!",
-    "9/10 x wel!"
+    "9/10 x wel!",
 ];
 
 var bot = new Discord.Client();
@@ -40,6 +40,9 @@ bot.on("message", function(message) {
        case "ping":
             message.channel.sendMessage("Pong!");
             break;
+        case "info":
+            message.channel.sendMessage("Ik ben BlackBull, Waar mijn naam vandaan komt? Asmar was een keer RedBull aan het drinken, En had snel een naam nodig ENNN hij had gewoon zin om een bot te maken i think.");
+            break;
         case "8ball":
         if (args [1]) message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
             else message.channel.sendMessage("Wat bedoel je?");
@@ -51,23 +54,15 @@ bot.on("message", function(message) {
         case "twitch":
             var embed = new Discord.RichEmbed()
                 .addField("Twitch", "https://twitch.tv/realrainbowassie", true)
+                .addField("Commands", "`!info` , `!8ball` , `!ping` ")
                 .setColor(0xf1be4)
                 .setFooter("Binnenkort meer informatie hier over!") 
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
+    
+    
             
-            case "commands":
-            var embed = new Discord.RichEmbed()
-                .addField("commands", "`!info` , `!8ball` , `!ping`", true)
-                .setColor(0xf1be4)
-                .setFooter("Binnenkort meer informatie hier over!") 
-                .setThumbnail(message.author.avatarURL)  
-            message.channel.sendEmbed(embed);
-            break;
-            
-     
-          
     }
 
     }
