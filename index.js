@@ -58,6 +58,7 @@ bot.on("message", function(message) {
             else message.channel.sendMessage("Wat bedoel je?");
             break;
         default: message.channel.sendMessage("wat voor command wil je?");  
+            break;
         case "sollicitatie":
              message.channel.sendMessage("Voor het sollicitatie formulier ga dan naar #staff-sollicitatie!")
              break;
