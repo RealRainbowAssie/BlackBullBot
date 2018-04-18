@@ -51,19 +51,18 @@ bot.on("message", function(message) {
         case "sollicitatie":
              message.channel.sendMessage("Voor het sollicitatie formulier ga dan naar #staff-sollicitatie!")
              break;
-        
-    switch(cmd) {
-             case "twitch":
+        case "twitch":
             var embed = new Discord.RichEmbed()
                 .addField("Twitch", "https://twitch.tv/realrainbowassie", true)
+                .addField("Commands", "`!info` , `!8ball` , `!ping` ")
                 .setColor(0xf1be4)
                 .setFooter("Binnenkort meer informatie hier over!") 
                 .setThumbnail(message.author.avatarURL)  
-            message.channel.send(embed);
+            message.channel.sendEmbed(embed);
             break;
-    }
     
-        
+    
+            
     }
 
     }
