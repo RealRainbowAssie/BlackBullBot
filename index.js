@@ -51,7 +51,9 @@ bot.on("message", function(message) {
         case "sollicitatie":
              message.channel.sendMessage("Voor het sollicitatie formulier ga dan naar #staff-sollicitatie!")
              break;
-        case "twitch":
+        
+    switch(cmd) {
+             case "twitch":
             var embed = new Discord.RichEmbed()
                 .addField("Twitch", "https://twitch.tv/realrainbowassie", true)
                 .setColor(0xf1be4)
@@ -59,17 +61,19 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
+    }
     
+    switch(cmd) {
          case "commands":
             var embed = new Discord.RichEmbed()
-                .addField("Commands", "`!info` , `!8ball` , `!ping`", true)
+                .addField("Commands", "`!info` , `!8ball` , `!ping` ", true)
                 .setColor(0xf1be4)
                 .setFooter("Binnenkort meer informatie hier over!") 
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
     
-            
+    }       
     }
 
     }
