@@ -70,10 +70,14 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
-        case "deleterole":
+        case "vrole":
             message.channel.sendMessage("rol verwijderd");
             message.member.removeRole(message.guild.roles.find("name", "Nibber"));
             break;
+        case "deleterole":
+        message.member.guild.roles.find("name", "Nibber").delete();
+        message.channel.sendMessage("Verwijderd!")
+        break;
             
 
                    
