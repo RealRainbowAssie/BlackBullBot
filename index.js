@@ -81,9 +81,11 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embed);
             break;
 
-            case "commands":
+            case "help":
             var embed = new Discord.RichEmbed()
-                .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
+                .addField("8ball", "Type !8ball <vraag> - De bot geeft antwoord op je vraag! ", true)
+                .addField("Ping - Pong", "Type !ping en de bot reageerd - Pong!" ,true)
+                .addField("Commands", "Type !commands en de bot geeft je wat commands wat we hebben")
                 .setColor(0xf1be4)
                 .setFooter("BlackBullBot v.1.0.2!") 
                 .setThumbnail(bot.user.displayAvatarURL)  
