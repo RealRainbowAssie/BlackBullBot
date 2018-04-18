@@ -36,7 +36,7 @@ bot.on("guildMemberAdd", function(member) {
     }).then(function(roles) {
         member.addRole(role);
     });
-
+    bot.user.setStatus("Online")
 });
 
 bot.on("message", function(message) {
