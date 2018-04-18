@@ -37,16 +37,6 @@ bot.on("guildMemberAdd", function(member) {
         member.addRole(role);
     });
 
-bot.on("ready", () => {
-    console.log("Bot Launched...")
-
-    bot.user.setStatus("Online")
-
-    bot.user,setGame("Onderhoud!")
-
-    bot.user,setGame("Onderhoud!", "https://twitch.tv/realrainbowassie");
-});
-
     
 
 
