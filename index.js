@@ -63,17 +63,7 @@ bot.on("message", function(message) {
             break;
     }
     
-    switch(cmd) {
-         case "commands":
-            var embed = new Discord.RichEmbed()
-                .addField("Commands", "`!info` , `!8ball` , `!ping` ", true)
-                .setColor(0xf1be4)
-                .setFooter("Binnenkort meer informatie hier over!") 
-                .setThumbnail(message.author.avatarURL)  
-            message.channel.sendEmbed(embed);
-            break;
-    
-    }       
+        
     }
 
     }
