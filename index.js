@@ -54,13 +54,20 @@ bot.on("message", function(message) {
         case "twitch":
             var embed = new Discord.RichEmbed()
                 .addField("Twitch", "https://twitch.tv/realrainbowassie", true)
-                .addField("Commands", "`!info` , `!8ball` , `!ping` ", true)
                 .setColor(0xf1be4)
                 .setFooter("Binnenkort meer informatie hier over!") 
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
     
+         case "commands":
+            var embed = new Discord.RichEmbed()
+                .addField("Commands", "`!info` , `!8ball` , `!ping` ")
+                .setColor(0xf1be4)
+                .setFooter("Binnenkort meer informatie hier over!") 
+                .setThumbnail(message.author.avatarURL)  
+            message.channel.sendEmbed(embed);
+            break;
     
             
     }
