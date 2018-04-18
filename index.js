@@ -1,10 +1,24 @@
 const Discord = require("discord.js");
+const YTDL = require("ytdl-core");
 
 const TOKEN = "NDM1ODM5MjUxMDM3NTUyNjcx.Dbe0lA.81mjftpjYlZvHgf8u5Z3Cyz-9Ew"; 
 const PREFIX = "!"
 
 function generateHex() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+function play(connection, message) {
+    var server = servers[message.guild.id];
+
+    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+
+    server.queue.shift();
+
+    server,dispatcher.on("end", function() {
+        if (server.queue[0]) play(connection, message);
+        else connection.disconnect();
+    });
 }
 
 var fortunes = [
@@ -16,6 +30,8 @@ var fortunes = [
 ];
 
 var bot = new Discord.Client();
+
+var servers = {};
 
 bot.on("ready", function() {
     console.log("ready");
@@ -68,6 +84,46 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
+        case "deleterole":
+            message.channel.sendMessage("rol verwijderd");
+            message.member.removeRole(message.guild.roles.find("name", "Nibber"));
+            break;
+        case "play":
+            if (!args[1]) {
+                message.channel.sendMessage("Plaats een link!");
+                return;
+            }  
+
+            if (!message.member.voiceChannel) {
+                message.channel.sendMessage("Je moet in een voice call zitten");
+                return;
+            }
+
+            if(!servers[message.guild.id]) servers[message.guild.id] = {
+                queue: []
+            };
+
+            var server = servers[message.guild.id];
+
+            server.queue.push(args[1]);
+
+            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+                play(connection, message);
+            });
+
+            break;
+        case "skip":
+            var server = servers[message.guild.id];
+
+            if (server.dispatcher) server.dispatcher.end();
+            break;
+        case "stop":
+        var server = server[message.guild.id];
+
+        if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+        break;
+        default:
+           message.channel.sendMessage("wat bedoel je?");
 
                    
     
