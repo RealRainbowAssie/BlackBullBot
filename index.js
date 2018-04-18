@@ -77,7 +77,7 @@ bot.on("message", function(message) {
                 .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
                 .setColor(0xf1be4)
                 .setFooter("BlackBullBot v.1.0.2!") 
-                .setThumbnail(message.author.isplayAvatarURL)  
+                .setThumbnail(message.author.displayAvatarURL)  
             message.channel.sendEmbed(embed);
             break;
 
@@ -86,7 +86,7 @@ bot.on("message", function(message) {
                 .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
                 .setColor(0xf1be4)
                 .setFooter("BlackBullBot v.1.0.2!") 
-                .setThumbnail(message.author.aisplayAvatarURL)  
+                .setThumbnail(message.author.displayAvatarURL)  
             message.channel.sendEmbed(embed);
             break;
         case "vrole":
