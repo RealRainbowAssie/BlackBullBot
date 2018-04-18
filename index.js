@@ -57,7 +57,7 @@ bot.on("message", function(message) {
         if (args [1]) message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
             else message.channel.sendMessage("Wat bedoel je?");
             break;
-        default: message.channel.sendMessage("wat voor command wil je?");  
+        default: message.channel.sendMessage("Het ingevoerde command is helaas niet beschikbaar!");  
             break;
         case "sollicitatie":
              message.channel.sendMessage("Voor het sollicitatie formulier ga dan naar #staff-sollicitatie!")
