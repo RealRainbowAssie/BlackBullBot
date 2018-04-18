@@ -64,7 +64,7 @@ bot.on("message", function(message) {
         case "twitch":
             var embed = new Discord.RichEmbed()
                 .addField("Twitch", "https://twitch.tv/realrainbowassie", true)
-                .addDescription("Veel gameplay")
+                .addField("Support", "Een follow achterlaten zou ik heel erg waarderen")
                 .setColor(0xf1be4)
                 .setFooter("Binnenkort meer informatie hier over!") 
                 .setThumbnail(message.author.avatarURL)  
