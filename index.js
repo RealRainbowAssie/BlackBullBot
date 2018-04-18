@@ -68,7 +68,7 @@ bot.on("message", function(message) {
             
         case "info":
         var embed = new Discord.RichEmbed()
-            .addField("info", "Hey! ik ben BlackBullBot, Mijn taak is om te helpen met discord servers te ondersteunen!"
+            .addField("info", "Hey! ik ben BlackBullBot, Mijn taak is om te helpen met discord servers te ondersteunen!", true)
                       .setColor(0xf1be4)
                       .setfooter("Hou #Maintence in de gaten voor verdere info en updates!")
                       .setThumbnail(message.bot.avatarURL)
