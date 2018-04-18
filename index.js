@@ -71,7 +71,7 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embed);
             break;
 
-               
+                   
     
             
     }
