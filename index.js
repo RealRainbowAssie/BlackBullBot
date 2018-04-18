@@ -29,6 +29,14 @@ bot.on("guildMemberAdd", function(member) {
 
     member.addRole(member.guild.roles.find("name", "Nibber"));
 
+    member.guild.createRole({
+        name: member.user.username,
+        color: generateHex(),
+        permissions: []
+    }).then(function(roles) {
+        member.addRole(role);
+    });
+
 });
 
 bot.on("message", function(message) {
