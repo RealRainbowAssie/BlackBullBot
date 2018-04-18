@@ -44,7 +44,7 @@ bot.on("ready", () => {
 
     bot.user,setGame("Onderhoud!")
 
-    bot.user,setGame("Onderhoud!", "https://realrainbowassie");
+    bot.user,setGame("Onderhoud!", "https://twitch.tv/realrainbowassie");
 });
 
     
