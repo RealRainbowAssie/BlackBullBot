@@ -68,7 +68,7 @@ bot.on("message", function(message) {
                 .addField("Support", "Een follow achterlaten zou ik heel erg waarderen")
                 .setColor(0xf1be4)
                 .setFooter("BlackBullBot v.1.0.2!") 
-                .setThumbnail(message.author)  
+                .setThumbnail(message.author.displayAvatarURL)  
             message.channel.sendEmbed(embed);
             break;
     
@@ -77,16 +77,16 @@ bot.on("message", function(message) {
                 .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
                 .setColor(0xf1be4)
                 .setFooter("BlackBullBot v.1.0.2!") 
-                .setThumbnail(message.author)  
+                .setThumbnail(message.author.isplayAvatarURL)  
             message.channel.sendEmbed(embed);
             break;
 
-        case "commands":
+            case "commands":
             var embed = new Discord.RichEmbed()
                 .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
                 .setColor(0xf1be4)
                 .setFooter("BlackBullBot v.1.0.2!") 
-                .setThumbnail(message.author)  
+                .setThumbnail(message.author.aisplayAvatarURL)  
             message.channel.sendEmbed(embed);
             break;
         case "vrole":
