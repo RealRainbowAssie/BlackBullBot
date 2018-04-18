@@ -51,7 +51,7 @@ bot.on("message", function(message) {
             message.channel.sendMessage("Pong!");
             break;
         case "info":
-            message.channel.sendMessage("Ik ben BlackBull, Waar mijn naam vandaan komt? Asmar was een keer RedBull aan het drinken, En had snel een naam nodig ENNN hij had gewoon zin om een bot te maken i think.");
+            message.channel.sendMessage("```Ik ben BlackBull, Waar mijn naam vandaan komt? Asmar was een keer RedBull aan het drinken, En had snel een naam nodig ENNN hij had gewoon zin om een bot te maken i think.```");
             break;
         case "8ball":
         if (args [1]) message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
@@ -64,6 +64,7 @@ bot.on("message", function(message) {
         case "twitch":
             var embed = new Discord.RichEmbed()
                 .addField("Twitch", "https://twitch.tv/realrainbowassie", true)
+                .addDescription("Veel gameplay")
                 .setColor(0xf1be4)
                 .setFooter("Binnenkort meer informatie hier over!") 
                 .setThumbnail(message.author.avatarURL)  
