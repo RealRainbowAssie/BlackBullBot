@@ -59,7 +59,7 @@ bot.on("message", function(message) {
                 .setColor(0xf1be4)
                 .setFooter("Binnenkort meer informatie hier over!") 
                 .setThumbnail(message.author.avatarURL)  
-            message.channel.sendEmbed(embed);
+            message.channel.send(embed);
             break;
     }
     
