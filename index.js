@@ -66,7 +66,7 @@ bot.on("message", function(message) {
                 .addField("Twitch", "https://twitch.tv/realrainbowassie", true)
                 .addField("Support", "Een follow achterlaten zou ik heel erg waarderen")
                 .setColor(0xf1be4)
-                .setFooter("Binnenkort meer informatie hier over!") 
+                .setFooter("BlackBullBot v.1.0.2!") 
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
@@ -75,7 +75,7 @@ bot.on("message", function(message) {
             var embed = new Discord.RichEmbed()
                 .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
                 .setColor(0xf1be4)
-                .setFooter("Binnenkort meer informatie hier over!") 
+                .setFooter("BlackBullBot v.1.0.2!") 
                 .setThumbnail(message.author.avatarURL)  
             message.channel.sendEmbed(embed);
             break;
@@ -101,4 +101,4 @@ bot.on("message", function(message) {
     
     )
 
-bot.login(TOKEN).catch(console.log);
+bot.login(TOKEN).catch(console.log)
