@@ -37,8 +37,7 @@ bot.on("guildMemberAdd", function(member) {
         member.addRole(role);
     });
 
-    
-
+});
 
 bot.on("message", function(message) {
     if (message.author .equals(bot.user)) return;
