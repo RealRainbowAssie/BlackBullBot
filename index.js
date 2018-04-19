@@ -45,9 +45,11 @@ bot.on("message", async message =>{
             .setColor("#9B59B6")
             .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
             .addField("ID", message.author.id)
-            .addField("Full Username", `${message.author.username}#${message.author.discriminator}`);
+            .addField("Created At", `${message.author.username}#${message.author.discriminator}`);
 
         message.channel.sendEmbed(embed);
+
+        return;
 
         
 
