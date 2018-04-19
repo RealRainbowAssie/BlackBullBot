@@ -33,7 +33,6 @@ bot.on("ready", () => {
     
     bot.user.setStatus("Online")
     bot.user.setGame("BlackBull Test Server")
-    bot.user.setGame("Support!", "https://twitch.tv/realrainbowassie")
 });
 
 bot.on("guildMemberAdd", function(member) {
