@@ -28,12 +28,13 @@ bot.on("ready", function() {
     console.log("ready");
 });
 
-bot.on("ready", async () => {
-    console.log(`${bot.user.username} is online!`);
-  
-    bot.user.setActivity("BlackBull Test Server", {type: "SPEELT"});
-  
-  });
+bot.on("ready", () => {
+    console.log("Bot Launched...")
+    
+    bot.user.setStatus("Online")
+    bot.user.setGame("BlackBull Test Server")
+    bot.user.setGame("Support!", "https://twitch.tv/realrainbowassie")
+});
 
 bot.on("guildMemberAdd", function(member) {
 
