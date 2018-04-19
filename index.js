@@ -15,7 +15,7 @@ var fortunes = [
     "`9/10 x wel!`",
     "`ja best wel`",
     "`NEE TOTAAL NIET!`",
-    "`ZWIJGRECHT A MATTIE!",
+    "`ZWIJGRECHT A MATTIE!`",
     "`stiekem wel ja`",
     "**100%**",
 ];
