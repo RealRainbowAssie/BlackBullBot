@@ -28,18 +28,6 @@ bot.on("ready", function() {
     console.log("ready");
 });
 
-client.on('message', message => {
-    if (message.content === "!coin") {
-        antwoorden = [
-            "kop",
-            "munt",
-            "De coin is weg gegaan!"
-        ]
-        var antwoord = antwoorden[Math.floor(Math.random() * antwoorden.length)]
-        message.channel.send(antwoord)
-    }
-});
-
 bot.on("ready", () => {
     console.log("Bot Launched...")
     
