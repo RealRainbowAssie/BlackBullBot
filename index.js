@@ -2,6 +2,10 @@ const Discord = require("discord.js");
 
 const TOKEN = "NDM1ODM5MjUxMDM3NTUyNjcx.Dbe0lA.81mjftpjYlZvHgf8u5Z3Cyz-9Ew"; 
 const PREFIX = "!"
+const USER_INFO_UPDATE = "userInfo";
+
+
+export {USER_INFO_UPDATE}
 
 function generateHex() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -28,33 +32,15 @@ bot.on("ready", function() {
     console.log("ready");
 });
 
-bot.on("message", async message =>{
-    if(message.author.bot) return;
-    if(message.channel.type === "dm") return;
+const USER_INFO_UPDATE = "userInfo";
 
-    let messageArray = message.content.split(" ");
-    let command = messageArray[0];
-    let args = messageArray.slice(1);
 
-    if(!command.startsWith(PREFIX)) return;
-
-    if(command === `${prefix}userinfo`) {
-        let embed = new Discord.RichEmbed()
-            .setAuthor(message.author.username)
-            .setDescription("Hier is jou informatie!")
-            .setColor("#9B59B6")
-            .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
-            .addField("ID", message.author.id)
-            .addField("Created At", `${message.author.username}#${message.author.discriminator}`);
-
-        message.channel.sendEmbed(embed);
-
-        return;
+export {USER_INFO_UPDATE}
 
         
 
-    }
-});
+    
+
 
 bot.on("guildMemberAdd", function(member) {
 
