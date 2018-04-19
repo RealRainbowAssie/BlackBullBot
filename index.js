@@ -31,7 +31,7 @@ bot.on("ready", function() {
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is online!`);
   
-    bot.user.setActivity("BlackBull Test Server", {type: "SPEELT"});
+    bot.user.setGame("BlackBull Test Server", {type: "SPEELT"});
   
   });
 
