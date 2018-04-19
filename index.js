@@ -84,6 +84,63 @@ bot.on("message", function(message) {
                 .setThumbnail(bot.user.displayAvatarURL)  
             message.channel.sendEmbed(embed);
             break;
+
+            if (command === "embed") {
+                if (!args[0]) return message.channel.send("Je moet wel zeggen of er wel of geen everyone bij moet komen! Dit doe je met `true` voor wel met everyone en `false` voor geen everyone")
+                if (args[0] === "true") {
+                    var everyone = true
+                } else {
+                    var everyone = false
+                }
+                message.channel.send(`Welke kleur wil je? (https://goo.gl/1UNgr8) (je hebt de # nodig, dus bij zwart is het #000000)`)
+                .then(function(){
+                    message.channel.awaitMessages(response => message.content, {
+                        max: 1,
+                        time: 300000000,
+                        errors: ['time'],
+                    })
+                    .then((collected) => {
+                        var color = collected.first().content
+                        message.channel.send(`Wat moet de title zijn?`)
+                        .then(function(){
+                            message.channel.awaitMessages(response => message.content, {
+                                max: 1,
+                                time: 300000000,
+                                errors: ['time'],
+                            })
+                            .then((collected) => {
+                                var title = collected.first().content
+                                message.channel.send(`Wat moet de description zijn?`)
+                                .then(function(){
+                                    message.channel.awaitMessages(response => message.content, {
+                                        max: 1,
+                                        time: 300000000,
+                                        errors: ['time'],
+                                    })
+                                    .then((collected) => {
+                                        setTimeout(embedsender, 1000)
+                                        function embedsender() {
+                                            var description = collected.first().content
+                                            let embed = new Discord.RichEmbed()
+                                            .setTitle(`${title}`)
+                                            .setColor(`${color}`)
+                                            .setDescription(`${description}`)
+                                            if (everyone === true) message.channel.send("@everyone")
+                                            message.channel.send({embed})
+                                        }
+                                    })
+                                    .catch(function(){
+                                    });
+                                });
+                            })
+                            .catch(function(){
+                            });
+                        });
+                    })
+                    .catch(function(){
+                    });
+                });
+              }
     
         case "commands":
             var embed = new Discord.RichEmbed()
