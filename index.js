@@ -29,12 +29,6 @@ bot.on("ready", function() {
     console.log("ready");
 });
 
-bot.on("ready", async () => {
-  console.log(`${bot.user.username} is online!`);
-    bot.user.setGame("BlackBull Test Server", {type: "SPEELT"});
-  
-  });
-
 bot.on("guildMemberAdd", function(member) {
 
     member.guild.channels.find("name", "nieuwe-nibbas").sendMessage(member.toString() + " Welkom op de server! Lees de regels even door als je wilt!");
