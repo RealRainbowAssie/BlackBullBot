@@ -74,7 +74,7 @@ bot.on("message", function(message) {
     
         case "commands":
             var embed = new Discord.RichEmbed()
-                .addField("Commands", "!ping , !info , !8ball , !twitch , !commands", true)
+                .addField("Commands", "!ping , !info , !8ball , !twitch , !commands , !invite", true)
                 .addField("Meer commands?", "Als jij wat mist in de bot geef het dan aan dan kijken wij voor mogelijk heden!", true)
                 .setColor(0x42E8F3)
                 .setFooter("BlackBullBot v.1.0.2!") 
@@ -85,17 +85,28 @@ bot.on("message", function(message) {
             case "help":
             var embed = new Discord.RichEmbed()
                 .addField("8ball", "Type !8ball <vraag> - De bot geeft antwoord op je vraag! ", true)
-                .addField("Ping - Pong", "Type !ping en de bot reageerd - Pong!" ,true)
+                .addField("Ping - Pong", "Type !ping en de bot reageerd - Pong!" , true)
                 .addField("Commands", "Type !commands en de bot geeft je wat commands wat we hebben")
                 .setColor(0x42E8F3)
                 .setFooter("BlackBullBot v.1.0.2!") 
                 .setThumbnail(bot.user.displayAvatarURL)  
             message.channel.sendEmbed(embed);
             break;
+            case "invite":
+            var embed = new Discord.RichEmbed()
+                .addField("Invite link", "Laat andere mensen ook de server joinen! https://discord.io/blackbullbot", true)
+                .addField("Open Bots", "Binnenkort hebben wij ook bot die iedereen kan gebruiken!" , true)
+                .setColor(0x42E8F3)
+                .setFooter("BlackBullBot v.1.0.2!")
+                .setThumbnail(bot.user.displayAvatarURL)
+            message.channel.sendEmbed(embed);
+            break;
+
         case "vrole":
             message.channel.sendMessage("rol verwijderd");
             message.member.removeRole(message.guild.roles.find("name", "Nibber"));
             break;
+
         case "deleterole":
         message.member.guild.roles.find("name", "Nibber").delete();
         message.channel.sendMessage("Verwijderd!")
