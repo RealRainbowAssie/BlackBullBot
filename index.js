@@ -125,6 +125,205 @@ bot.on("message", function(message) {
         message.channel.sendMessage("Verwijderd!")
         break;
 
+        if (command === "play") {
+            if (!args[0]) {
+              if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Je moet eerst muziek toevoegen met \`${prefix}play <Zoekterm>\``);
+              var voiceChannel = message.member.voiceChannel;
+              if (!voiceChannel) return message.channel.send("Je moet wel in een voicechannel zitten!");
+              if (queue[message.guild.id].playing) return message.channel.sendMessage('Ik speel al muziek!');
+              voiceChannel.join();
+              let dispatcher;
+              queue[message.guild.id].playing = true;
+              (function play(song) {
+                if (song === undefined) return message.channel.sendMessage('De wachtrij is leeg, dus ik stop met afspelen!').then(() => {
+                  queue[message.guild.id].playing = false;
+                  message.member.voiceChannel.leave();
+                });
+                message.channel.sendMessage(`Ik speel nu **${song.title}** voor **${song.requester}**`);
+                dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : passe });
+                let collector = message.channel.createCollector(m => m);
+                collector.on('message', msg => {
+                  var arg = msg.content.split(" ").slice(1);
+                  if (msg.content.toLowerCase().startsWith(prefix + "np")) {
+                    var plat = "youtube";
+                    if (plat === "youtube") {
+                      var opts = {
+                        maxResults: 1,
+                        key: 'AIzaSyDtotP2-t9UOsJ3m6hVRkahiZs8G5Zigl8'
+                      };
+                      search(`${song.title}`, opts, function(err, results) {
+                        if (err) return console.log(err);
+                        let embed = new Discord.RichEmbed().setTitle("Music").setColor("#00ff00").setDescription(`**Song:** \`${results[0].title}\`\n**Requester:** \`${song.requester}\`\n**URL:** ${results[0].link}\n**Description:** \`${results[0].description}\`\n**Channel:** \`${results[0].channelTitle}\`\n**Time playing:** \`${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}\``)
+                        message.channel.send({embed})
+                      })
+                    } else {
+                      let embed = new Discord.RichEmbed().setTitle("Music").setColor("#00ff00").setDescription(`\n**URL:** \`${song.url}\`\n**Time playing:** \`${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}\``)
+                      message.channel.send({embed})
+                    }
+                  }
+                  if (msg.content.toLowerCase().startsWith(prefix + "stop")) {
+                    if (message.author.id === message.guild.ownerID || message.author.id === "327462385361092621" || message.member.roles.some(r => ["dj"].includes(r.name))) {
+                      message.channel.send("Ik ben gestopt met spelen!");
+                      voiceChannel.leave()
+                    } else {
+                      message.channel.send("Je moet een DJ zijn om dit te doen!");
+                    }
+                  }
+                  if (msg.content.toLowerCase().startsWith(prefix + "skip")) {
+                      if (message.author.id === message.guild.ownerID || message.author.id === "327462385361092621" || message.member.roles.some(r => ["dj"].includes(r.name)) || message.author.username === song.requester) {
+                        message.channel.send("Ik heb het liedje geskipt!")
+                        return dispatcher.end()
+                      } else {
+                        message.channel.send("Je moet DJ of de song requester zijn om dit te doen!");
+                      }
+                  }
+                  if (msg.content.toLowerCase().startsWith(prefix + "volume")) {
+                    if (message.author.id === message.guild.ownerID || message.author.id === "327462385361092621" || message.member.roles.some(r => ["dj"].includes(r.name))) {
+                      if (!arg[0]) return message.channel.send("Je moet wel een volume opgeven!")
+                      if (Number(arg[0]) > 200 || Number(arg[0]) < 0) return message.channel.send("Je moet wel een volume opgeven tussen `0` en `200`!")
+                      var newvolume = Number(arg[0]) / 100
+                      message.channel.send(`Het volume is veranderd naar ${newvolume}!`)
+                      dispatcher.setVolume(newvolume)
+                    } else {
+                      message.channel.send("Je moet DJ zijn om dit te doen!")
+                    }
+                  }
+                  if (msg.content.toLowerCase().startsWith(prefix + "pause")) {
+                    message.channel.send("De player staat op pauze!")
+                    dispatcher.pause()
+                  }
+                  if (msg.content.toLowerCase().startsWith(prefix + "rusume")) {
+                    message.channel.send("De player gaat weer verder!")
+                    dispatcher.resume()
+                  }
+                });
+                dispatcher.on('end', () => {
+                  collector.stop();
+                  play(queue[message.guild.id].songs.shift());
+                });
+                dispatcher.on('error', (err) => {
+                  return message.channel.sendMessage('Er ging iets fout: ' + err).then(() => {
+                    collector.stop();
+                    play(queue[message.guild.id].songs.shift());
+                  });
+                });
+              })(queue[message.guild.id].songs.shift());
+            } else {
+              let url = message.content.split(' ')[1];
+              if (url == '' || url === undefined) return message.channel.sendMessage(`Je moet wel een url opgeven!`);
+              if (args[0].toLowerCase().startsWith("https://www.youtube.com/")) {
+                yt.getInfo(url, (err, info) => {
+                  if(err) return message.channel.sendMessage('Geen goede YouTube link: ' + err);
+                  if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
+                  queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username});
+                  message.channel.sendMessage(`**${info.title}** is nu in de queue! Doe \`${prefix}play\` om het af te spelen als je dit nog niet hebt gedaan!`);
+                });
+              } else {
+                message.channel.send("Ik ben aan het zoeken...")
+                .then(msg => {
+                  var opts = {
+                    maxResults: 1,
+                    key: 'AIzaSyDtotP2-t9UOsJ3m6hVRkahiZs8G5Zigl8'
+                  };
+      
+                  search(`${args.splice(0).join(" ")}`, opts, function(err, results) {
+                    if (err) return console.log(err);
+                    msg.edit(`Gevonden: ${results[0].link}`)
+                    var url = results[0].link
+                    yt.getInfo(url, (err, info) => {
+                      if (err) return message.channel.sendMessage('Geen goede YouTube link: ' + err);
+                      if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
+                      var plat = "youtube";
+                      queue[message.guild.id].songs.push({url: url, title: info.title, requester: message.author.username, platform: plat});
+                      if (queue[message.guild.id].playing) return message.channel.send(`**${info.title}** is nu in de queue toegevoegd!`)
+                      if (queue[message.guild.id] === undefined) return message.channel.sendMessage(`Je moet eerst muziek toevoegen met \`${prefix}play <URL>\``);
+                      var voiceChannel = message.member.voiceChannel;
+                      if (!voiceChannel) return message.channel.send("Je moet wel in een voicechannel zitten!");
+                      voiceChannel.join();
+                      if (queue[message.guild.id].playing) return message.channel.sendMessage('Ik speel al muziek!');
+                      let dispatcher;
+                      queue[message.guild.id].playing = true;
+                      (function play(song) {
+                        if (song === undefined) return message.channel.sendMessage('De wachtrij is leeg, dus ik stop met afspelen!').then(() => {
+                          queue[message.guild.id].playing = false;
+                          message.member.voiceChannel.leave();
+                        });
+                        message.channel.sendMessage(`Ik speel nu **${song.title}** voor **${song.requester}**`);
+                        dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : passe });
+                        let collector = message.channel.createCollector(m => m);
+                        collector.on('message', msg => {
+                          var arg = msg.content.split(" ").slice(1);
+                          if (msg.content.toLowerCase().startsWith(prefix + "np")) {
+                            var plat = "youtube";
+                            if (plat === "youtube") {
+                              var opts = {
+                                maxResults: 1,
+                                key: 'AIzaSyDtotP2-t9UOsJ3m6hVRkahiZs8G5Zigl8'
+                              };
+                              search(`${song.title}`, opts, function(err, results) {
+                                if (err) return console.log(err);
+                                let embed = new Discord.RichEmbed().setTitle("Music").setColor("#00ff00").setDescription(`**Song:** \`${results[0].title}\`\n**Requester:** \`${song.requester}\`\n**URL:** ${results[0].link}\n**Description:** \`${results[0].description}\`\n**Channel:** \`${results[0].channelTitle}\`\n**Time playing:** \`${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}\``)
+                                message.channel.send({embed})
+                              })
+                            } else {
+                              let embed = new Discord.RichEmbed().setTitle("Music").setColor("#00ff00").setDescription(`\n**URL:** \`${song.url}\`\n**Time playing:** \`${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0'+Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}\``)
+                              message.channel.send({embed})
+                            }
+                          }
+                          if (msg.content.toLowerCase().startsWith(prefix + "stop")) {
+                            if (message.author.id === message.guild.ownerID || message.author.id === "327462385361092621" || message.member.roles.some(r => ["dj"].includes(r.name))) {
+                              message.channel.send("Ik ben gestopt met spelen!");
+                              voiceChannel.leave()
+                            } else {
+                              message.channel.send("Je moet een DJ zijn om dit te doen!");
+                            }
+                          }
+                          if (msg.content.toLowerCase().startsWith(prefix + "skip")) {
+                              if (message.author.id === message.guild.ownerID || message.author.id === "327462385361092621" || message.member.roles.some(r => ["dj"].includes(r.name)) || message.author.username === song.requester) {
+                                message.channel.send("Ik heb het liedje geskipt!")
+                                return dispatcher.end()
+                              } else {
+                                message.channel.send("Je moet DJ of de song requester zijn om dit te doen!");
+                              }
+                          }
+                          if (msg.content.toLowerCase().startsWith(prefix + "volume")) {
+                            if (message.author.id === message.guild.ownerID || message.author.id === "327462385361092621" || message.member.roles.some(r => ["dj"].includes(r.name))) {
+                              if (!arg[0]) return message.channel.send("Je moet wel een volume opgeven!")
+                              if (Number(arg[0]) > 200 || Number(arg[0]) < 0) return message.channel.send("Je moet wel een volume opgeven tussen `0` en `200`!")
+                              var newvolume = Number(arg[0]) / 100
+                              message.channel.send(`Het volume is veranderd naar ${newvolume}!`)
+                              dispatcher.setVolume(newvolume)
+                            } else {
+                              message.channel.send("Je moet DJ zijn om dit te doen!")
+                            }
+                          }
+                          if (msg.content.toLowerCase().startsWith(prefix + "pause")) {
+                            message.channel.send("De player staat op pauze!")
+                            dispatcher.pause()
+                          }
+                          if (msg.content.toLowerCase().startsWith(prefix + "rusume")) {
+                            message.channel.send("De player gaat weer verder!")
+                            dispatcher.resume()
+                          }
+                        });
+                        dispatcher.on('end', () => {
+                          collector.stop();
+                          play(queue[message.guild.id].songs.shift());
+                        });
+                        dispatcher.on('error', (err) => {
+                          return message.channel.sendMessage('Er ging iets fout: ' + err).then(() => {
+                            collector.stop();
+                            play(queue[message.guild.id].songs.shift());
+                          });
+                        });
+                      })(queue[message.guild.id].songs.shift());
+                    });
+                  });
+                })
+              }
+            }
+          }
+
         
             
 
