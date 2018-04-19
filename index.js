@@ -95,7 +95,7 @@ bot.on("message", function(message) {
             case "invite":
             var embed = new Discord.RichEmbed()
                 .addField("Invite link", "Laat andere mensen ook de server joinen! https://discord.io/blackbullbot", true)
-                .addField("Open Bots", "Binnenkort hebben wij ook bot die iedereen kan gebruiken!" , true)
+                .addField("Open Bots", "Binnenkort hebben wij ook een bot die iedereen kan gebruiken!" , true)
                 .setColor(0x42E8F3)
                 .setFooter("BlackBullBot v.1.0.2!")
                 .setThumbnail(bot.user.displayAvatarURL)
