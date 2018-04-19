@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 const TOKEN = "NDM1ODM5MjUxMDM3NTUyNjcx.Dbe0lA.81mjftpjYlZvHgf8u5Z3Cyz-9Ew"; 
 const PREFIX = "!"
 
-
 function generateHex() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
@@ -29,10 +28,7 @@ bot.on("ready", function() {
     console.log("ready");
 });
 
-const USER_INFO_UPDATE = "userInfo";
 
-
-export {USER_INFO_UPDATE}
 
         
 
