@@ -28,12 +28,29 @@ bot.on("ready", function() {
     console.log("ready");
 });
 
+if (command === "botstats") {
+    message.channel.send("Ik ben bezig...").then(message => {
+      var ping = Date.now() - startping;
+      const usememory = Math.round(os.freemem() / 1000000)
+      const totalmemory = Math.round(os.totalmem() / 1000000)
+      const freememory = totalmemory - usememory
+      const ditisdeosuptimeinuren = os.uptime / 3600
+      const ditisdeosuptime = Math.round(ditisdeosuptimeinuren)
+      const embed = new Discord.RichEmbed()
+      .setTitle("BotStats")
+      .setColor(0x00AE86)
+      .addField("bot", `Uptime: ${Math.round((Math.floor(process.uptime())) / 3600)} uur\nNodeJS version: ${process.version}\nDiscord.JS version: ${Discord.version}`, true) .addField("Memory", `Gebruikt: ${usememory}MB \nTotaal: ${totalmemory}MB \nOver: ${freememory}MB`, true)
+      .addField("Ping", `Verwerking: ${(Date.now() - startping) - ping}ms\nPing: ${ping}ms\nAPI: ${Math.round(client.ping)}ms`, true)
+      .addField("VPS", `Type: ${os.type} (${os.platform})\nBuild number: ${os.release}\nUptime: ${ditisdeosuptime} uur`, true)
+      message.edit(embed);
+    })
+  }
+
 bot.on("ready", () => {
     console.log("Bot Launched...")
     
     bot.user.setStatus("Online")
     bot.user.setGame("BlackBull Test Server")
-    bot.user.setGame("Support!", "https://twitch.tv/realrainbowassie")
 });
 
 bot.on("guildMemberAdd", function(member) {
