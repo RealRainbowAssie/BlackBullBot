@@ -28,24 +28,15 @@ bot.on("ready", function() {
     console.log("ready");
 });
 
-client.on('message', msg => {
-    if (msg.content === "!info") {
-    OS defineren
-        const os = require("os");
-        Memory bekijken
-        const usememory = Math.round(os.freemem() / 1000000)
-        const totalmemory = Math.round(os.totalmem() / 1000000)
-        const freememory = totalmemory - usememory
-
-        const embed = new Discord.RichEmbed()
-        .setTitle("Bot info")
-         .setColor(0x00AE86)
-         .addField("Totale getallen", `Totale servers: ${bot.guilds.size} \nTotale gebruikers: ${bot.users.size} \nTotale channels: ${bot.channels.size}`, true)
-          .addField("ServerGetallen", `BINNENKORT`, true)
-         .addBlankField(true)
-           .addField("Bot informatie", `Uptime: ${Math.floor(process.uptime())} secondes \nNodeJS versie: ${process.version}`, true)
-            .addBlankField(true)
-          message.channel.send({embed});
+client.on('message', message => {
+    if (message.content === "!coin") {
+        antwoorden = [
+            "kop",
+            "munt",
+            "De coin is weg gegaan!"
+        ]
+        var antwoord = antwoorden[Math.floor(Math.random() * antwoorden.length)]
+        message.channel.send(antwoord)
     }
 });
 
@@ -161,6 +152,6 @@ bot.on("message", function(message) {
 
     
     )
-
+    
 
 bot.login(TOKEN).catch(console.log);
