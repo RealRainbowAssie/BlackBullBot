@@ -30,9 +30,9 @@ bot.on("ready", function() {
 
 client.on('message', msg => {
     if (msg.content === "!info") {
-    OS 
+    OS defineren
         const os = require("os");
-        Memory 
+        Memory bekijken
         const usememory = Math.round(os.freemem() / 1000000)
         const totalmemory = Math.round(os.totalmem() / 1000000)
         const freememory = totalmemory - usememory
