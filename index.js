@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 
 const TOKEN = "NDM1ODM5MjUxMDM3NTUyNjcx.Dbe0lA.81mjftpjYlZvHgf8u5Z3Cyz-9Ew"; 
 const PREFIX = "!"
-onst bot = new Discord.Client({disableEveryone: true});
 
 function generateHex() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -28,6 +27,13 @@ var servers = {};
 bot.on("ready", function() {
     console.log("ready");
 });
+
+bot.on("ready", async () => {
+    console.log(`${bot.user.username} is online!`);
+  
+    bot.user.setGame("BlackBull Test Server", {type: "SPEELT"});
+  
+  });
 
 bot.on("guildMemberAdd", function(member) {
 
