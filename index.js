@@ -28,6 +28,32 @@ bot.on("ready", function() {
     console.log("ready");
 });
 
+bot.on("message", async message =>{
+    if(message.author.bot) return;
+    if(message.channel.type === "dm") return;
+
+    let messageArray = message.content.split(" ");
+    let command = messageArray[0];
+    let args = messageArray.slice(1);
+
+    if(!command.startsWith(PREFIX)) return;
+
+    if(command === `${prefix}userinfo`) {
+        let embed = new Discord.RichEmbed()
+            .setAuthor(message.author.username)
+            .setDescription("Hier is jou informatie!")
+            .setColor("#9B59B6")
+            .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
+            .addField("ID", message.author.id)
+            .addField("Full Username", `${message.author.username}#${message.author.discriminator}`);
+
+        message.channel.sendEmbed(embed);
+
+        
+
+    }
+});
+
 bot.on("guildMemberAdd", function(member) {
 
     member.guild.channels.find("name", "nieuwe-nibbas").sendMessage(member.toString() + " Welkom op de server! Lees de regels even door als je wilt!");
