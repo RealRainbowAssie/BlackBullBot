@@ -103,20 +103,7 @@ bot.on("message", message => {
         .catch(error => message.reply(`:negative_squared_cross_mark: Sorry ${message.author} is niet gekicked omdat : ${error}`));
       message.reply(`${member.user.tag} :white_check_mark:  Is gekicked door ${message.author.tag} omdat: ${reason}`);
       break;
-
-      case "clear":
-        
-        const deleteCount = parseInt(args[0], 10);
-        
-        if(!deleteCount || deleteCount < 2 || deleteCount > 100)
-          return message.reply("**Noem een getal tussen** `<2> en <100>`");
-        
-        const fetched = await message.channel.fetchMessages({count: deleteCount});
-        message.channel.bulkDelete(fetched)
-          .catch(error => message.reply(`:construction_worker: Ik kon de berichten helaas niet verwijderen: ${error}`));
-          break;
       
-
     case "commands":
       var embed = new Discord.RichEmbed()
         .addField("Commands", "!ping , !info , !8ball , !twitch , !commands , !invite", true)
