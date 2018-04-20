@@ -114,6 +114,7 @@ bot.on("message", message => {
         const fetched = await message.channel.fetchMessages({count: deleteCount});
         message.channel.bulkDelete(fetched)
           .catch(error => message.reply(`:construction_worker: Ik kon de berichten helaas niet verwijderen: ${error}`));
+          break;
       
 
     case "commands":
