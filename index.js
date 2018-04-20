@@ -168,4 +168,10 @@ bot.on("message", message => {
 
 bot.login(TOKEN).catch(console.log);
 
-richembed("kick of ban","hier je shit", "0x42E8F3",message);
+function richembed(title, description, color, msg) {
+    var embed = new discord.RichEmbed()
+        .setTitle(BlackBullPolitie)
+        .setDescription(test)
+        .setColor(0x42E8F3);
+    msg.channel.send(embed);
+}
