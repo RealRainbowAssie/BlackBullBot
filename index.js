@@ -121,6 +121,20 @@ bot.on("message", message => {
       message.channel.sendEmbed(embed);
       break;
 
+      case "social media":
+      var embed = new Discord.RichEmbed()
+        .addField("Instagram", ":camera: https://instagram.com/asmardjowi", true)
+        .setDescription("Volg me op insta voor wat mooie foto's van mijn gezicht!")
+        .addField("Snapchat", "Mijn snapchat: :ghost: YungAssie", true)
+        .setDescription("Wil jij nou mijn dagelijks leven zien? Dat kan jaja voeg me op snapchat!")
+        .setColor(0x42E8F3)
+        .setTimestamp()
+        .setFooter("BlackBullBot v.1.0.2!©")
+        .setThumbnail(bot.user.displayAvatarURL)
+        
+      message.channel.sendEmbed(embed);
+      break;
+
     case "help":
       var embed = new Discord.RichEmbed()
         .addField("8ball", "Type !8ball <vraag> - De bot geeft antwoord op je vraag! ", true)
