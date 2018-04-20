@@ -123,11 +123,10 @@ bot.on("message", message => {
 
       case "socialmedia":
       var embed = new Discord.RichEmbed()
-        .title("Social Media")
         .addField("Instagram", ":camera: https://instagram.com/asmardjowi", true)
         .setDescription("Volg me op insta voor wat mooie foto's van mijn gezicht!")
         .addField("Snapchat", "Mijn snapchat: :ghost: YungAssie", true)
-        .setDescription("Wil jij nou mijn dagelijks leven zien? Dat kan jaja voeg me op snapchat!")
+        .setDescription("*Wil jij nou mijn dagelijks leven zien? Dat kan jaja voeg me op snapchat!*")
         .setColor(0x42E8F3)
         .setTimestamp()
         .setFooter("BlackBullBot v.1.0.2!©")
@@ -180,5 +179,4 @@ bot.on("message", message => {
 
 
 bot.login(TOKEN).catch(console.log);
-
 
