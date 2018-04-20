@@ -104,12 +104,11 @@ bot.on("message", message => {
       message.reply(`${member.user.tag} :white_check_mark:  Is gekicked door ${message.author.tag} omdat: ${reason}`);
       break;
 
-      
-      case "ban":   
+      if(command === "ban") {
+        
         if(!message.member.roles.some(r=>["CEO", "COO"].includes(r.name))) return message.reply("Sorry, je hebt geen permissie!");
         
-
-        let member = message.mentions.members.first() || message.guild.members.get(args[0]);
+        let member = message.mentions.members.first();
         if(!member)
           return message.reply("Geef een user van de server op!");
         if(!member.bannable) 
@@ -122,7 +121,7 @@ bot.on("message", message => {
           .catch(error => message.reply(`:negative_squared_cross_mark: Sorry ${message.author} is niet gebanned omdat : ${error}`));
         message.reply(`${member.user.tag} :white_check_mark:  Is gebanned door ${message.author.tag} omdat: ${reason}`);
         break;
-      
+      }
 
     case "commands":
       var embed = new Discord.RichEmbed()
@@ -168,11 +167,3 @@ bot.on("message", message => {
 
 
 bot.login(TOKEN).catch(console.log);
-
-function richembed(title, description, color, msg) {
-    var embed = new discord.RichEmbed()
-        .setTitle(BlackBullPolitie)
-        .setDescription(test)
-        .setColor(0x42E8F3);
-    msg.channel.send(embed);
-}
