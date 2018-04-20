@@ -83,6 +83,7 @@ bot.on("message", message => {
         .setColor(0x42E8F3)
         .setFooter("BlackBullBot v.1.0.2!")
         .setThumbnail(bot.user.displayAvatarURL)
+        
       message.channel.sendEmbed(embed);
       break;
     case "kick":
@@ -110,8 +111,10 @@ bot.on("message", message => {
         .addField("Commands", "!ping , !info , !8ball , !twitch , !commands , !invite", true)
         .addField("Meer commands?", "Als jij wat mist in de bot geef het dan aan dan kijken wij voor mogelijk heden!", true)
         .setColor(0x42E8F3)
+        .setTimestamp()
         .setFooter("BlackBullBot v.1.0.2!")
         .setThumbnail(bot.user.displayAvatarURL)
+        
       message.channel.sendEmbed(embed);
       break;
 
@@ -123,8 +126,10 @@ bot.on("message", message => {
         .addField("Info", "Type !info voor wat korte informatie over de bot!" )
         .addField("Kick", "Type !kick <user> <reden> - Hiermee kick je een bot (hiervoor heb je een speciale rol nodig!)")
         .setColor(0x42E8F3)
+        .setTimestamp()
         .setFooter("BlackBullBot v.1.0.2!")
         .setThumbnail(bot.user.displayAvatarURL)
+        .setTimestamp()
       message.channel.sendEmbed(embed);
       break;
     case "invite":
@@ -132,8 +137,10 @@ bot.on("message", message => {
         .addField("Invite link", "Laat andere mensen ook de server joinen! https://discord.io/blackbullbot", true)
         .addField("Open Bots", "Binnenkort hebben wij ook bot die iedereen kan gebruiken!", true)
         .setColor(0x42E8F3)
+        .setTimestamp()
         .setFooter("BlackBullBot v.1.0.2!")
         .setThumbnail(bot.user.displayAvatarURL)
+        
       message.channel.sendEmbed(embed);
       break;
 
