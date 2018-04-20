@@ -154,9 +154,7 @@ bot.on("message", message => {
       message.channel.sendMessage("Verwijderd!")
       break;
       
-    case "ms":
-        const m = message.channel.send("ms");
-        m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+  
   }
 });
 
