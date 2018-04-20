@@ -35,6 +35,34 @@ bot.on("ready", () => {
     bot.user.setGame("BlackBull Test Server")
 });
 
+if(command === "kick") {
+    // This command must be limited to mods and admins. In this example we just hardcode the role names.
+    // Please read on Array.some() to understand this bit: 
+    // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/some?
+    if(!message.member.roles.some(r=>["CEO", "COO"].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
+    
+    // Let's first check if we have a member and if we can kick them!
+    // message.mentions.members is a collection of people that have been mentioned, as GuildMembers.
+    // We can also support getting the member by ID, which would be args[0]
+    let member = message.mentions.members.first() || message.guild.members.get(args[0]);
+    if(!member)
+      return message.reply("Tag iemand die in de server zit aub!");
+    if(!member.kickable) 
+      return message.reply("Helaas! Ik kan deze persoon niet kicken");
+    
+    // slice(1) removes the first part, which here should be the user mention or ID
+    // join(' ') takes all the various parts to make it a single string.
+    let reason = args.slice(1).join(' ');
+    if(!reason) reason = "No reason provided";
+    
+    // Now, time for a swift kick in the nuts!
+    await member.kick(reason)
+      .catch(error => message.reply(`Sorry ${message.author} ik kan deze helaas niet kicken omdat : ${error}`));
+    message.reply(`${member.user.tag} Is gekicked door ${message.author.tag} omdat: ${reason}`);
+
+  }
+
 bot.on("guildMemberAdd", function(member) {
 
     member.guild.channels.find("name", "nieuwe-nibbas").sendMessage(member.toString() + " Welkom op de server! Lees de regels even door als je wilt!");
@@ -57,6 +85,12 @@ bot.on("message", function(message) {
     if (!message.content.startsWith(PREFIX)) return;
 
     var args = message.content.substring(PREFIX.length).split(" ");
+
+    if(command === "kick") {
+        let member = message.mentions.members.first();
+        let reason = args.slice(1).join(" ");
+        member.kick(reason);
+      }
 
     switch (args[0].toLocaleLowerCase()) {
        case "ping":
