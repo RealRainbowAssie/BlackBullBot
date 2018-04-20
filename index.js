@@ -28,7 +28,7 @@ bot.on("ready", () => {
   console.log("Bot Launched...")
 
   bot.user.setStatus("Online")
-  bot.user.setActivity("MAINTENCE")
+  bot.user.setGame("MAINTENCE")
 });
 
 bot.on("guildMemberAdd", function(member) {
