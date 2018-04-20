@@ -92,7 +92,7 @@ bot.on("message", message => {
       if (!member)
         return message.reply("Geef een user van de server op!");
       if (!member.kickable)
-        return message.reply("Ik kan deze persoon niet kicken");
+        return message.reply("Ik kan deze persoon niet kicken!");
 
 
       let reason = args.slice(1).join(' ');
@@ -103,6 +103,24 @@ bot.on("message", message => {
         .catch(error => message.reply(`:negative_squared_cross_mark: Sorry ${message.author} is niet gekicked omdat : ${error}`));
       message.reply(`${member.user.tag} :white_check_mark:  Is gekicked door ${message.author.tag} omdat: ${reason}`);
       break;
+
+      if(command === "ban") {
+        
+        if(!message.member.roles.some(r=>["CEO", "COO"].includes(r.name))) return message.reply("Sorry, je hebt geen permissie!");
+        
+        let member = message.mentions.members.first();
+        if(!member)
+          return message.reply("Geef een user van de server op!");
+        if(!member.bannable) 
+          return message.reply("Ik kan deze persoon niet bannen!");
+    
+        let reason = args.slice(1).join(' ');
+        if(!reason) reason = "Geen reden";
+        
+        await member.ban(reason)
+          .catch(error => message.reply(`:negative_squared_cross_mark: Sorry ${message.author} is niet gebanned omdat : ${error}`));
+        message.reply(`${member.user.tag} :white_check_mark:  Is gebanned door ${message.author.tag} omdat: ${reason}`);
+      }
 
     case "commands":
       var embed = new Discord.RichEmbed()
