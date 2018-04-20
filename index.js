@@ -167,3 +167,5 @@ bot.on("message", message => {
 
 
 bot.login(TOKEN).catch(console.log);
+
+richembed("kick of ban","hier je shit", "0x42E8F3",message);
