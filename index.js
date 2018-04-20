@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
- 
+
 const TOKEN = "";
 const PREFIX = "!"
- 
+
 function generateHex() {
   return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
- 
+
 var fortunes = [
   ":white_check_mark:`Ja`",
   ":negative_squared_cross_mark:  `Nee`",
@@ -19,24 +19,24 @@ var fortunes = [
   ":white_check_mark: `stiekem wel ja`",
   ":white_check_mark: **100%**",
 ];
- 
+
 var bot = new Discord.Client();
- 
+
 var servers = {};
- 
+
 bot.on("ready", () => {
   console.log("Bot Launched...")
- 
+
   bot.user.setStatus("Online")
   bot.user.setGame("BlackBull Test Server")
 });
- 
+
 bot.on("guildMemberAdd", function(member) {
- 
+
   member.guild.channels.find("name", "nieuwe-nibbas").sendMessage(member.toString() + " Welkom op de server! Lees de regels even door als je wilt!");
- 
+
   member.addRole(member.guild.roles.find("name", "Nibber"));
- 
+
   member.guild.createRole({
     name: member.user.username,
     color: generateHex(),
@@ -44,20 +44,20 @@ bot.on("guildMemberAdd", function(member) {
   }).then(function(roles) {
     member.addRole(role);
   });
- 
- 
- 
+
+
+
 });
- 
+
 bot.on("message", message => {
   if (message.author.equals(bot.user)) return;
- 
+
   if (!message.content.startsWith(PREFIX)) return;
- 
+
   var args = message.content.substring(PREFIX.length).split(" ");
- 
- 
- 
+
+
+
   switch (args[0].toLocaleLowerCase()) {
     case "ping":
       message.channel.sendMessage("Pong!");
@@ -86,24 +86,24 @@ bot.on("message", message => {
       break;
     case "kick":
       if (!message.member.roles.some(r => ["ID", "ID"].includes(r.id))) return message.reply("Sorry, je hebt geen permissie!");
- 
- 
+
+
       let member = message.mentions.members.first() || message.guild.members.get(args[0]);
       if (!member)
         return message.reply("Geef een user van de server op!");
       if (!member.kickable)
         return message.reply("Ik kan deze persoon niet kicken");
- 
- 
+
+
       let reason = args.slice(1).join(' ');
       if (!reason) reason = "Geen reden";
- 
- 
+
+
       member.kick(reason)
         .catch(error => message.reply(`Sorry ${message.author} is niet gekicked omdat : ${error}`));
       message.reply(`${member.user.tag} Is gekicked door ${message.author.tag} omdat: ${reason}`);
       break;
- 
+
     case "commands":
       var embed = new Discord.RichEmbed()
         .addField("Commands", "!ping , !info , !8ball , !twitch , !commands , !invite", true)
@@ -113,7 +113,7 @@ bot.on("message", message => {
         .setThumbnail(bot.user.displayAvatarURL)
       message.channel.sendEmbed(embed);
       break;
- 
+
     case "help":
       var embed = new Discord.RichEmbed()
         .addField("8ball", "Type !8ball <vraag> - De bot geeft antwoord op je vraag! ", true)
@@ -133,18 +133,18 @@ bot.on("message", message => {
         .setThumbnail(bot.user.displayAvatarURL)
       message.channel.sendEmbed(embed);
       break;
- 
+
     case "vrole":
       message.channel.sendMessage("rol verwijderd");
       message.member.removeRole(message.guild.roles.find("name", "Nibber"));
       break;
- 
+
     case "deleterole":
       message.member.guild.roles.find("name", "Nibber").delete();
       message.channel.sendMessage("Verwijderd!")
       break;
   }
 });
- 
- 
+
+
 bot.login(TOKEN).catch(console.log);
