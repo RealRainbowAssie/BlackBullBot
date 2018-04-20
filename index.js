@@ -100,8 +100,8 @@ bot.on("message", message => {
 
 
       member.kick(reason)
-        .catch(error => message.reply(`Sorry ${message.author} is niet gekicked omdat : ${error}`));
-      message.reply(`${member.user.tag} Is gekicked door ${message.author.tag} omdat: ${reason}`);
+        .catch(error => message.reply(`:negative_squared_cross_mark: Sorry ${message.author} is niet gekicked omdat : ${error}`));
+      message.reply(`${member.user.tag} :white_check_mark:  Is gekicked door ${message.author.tag} omdat: ${reason}`);
       break;
 
     case "commands":
