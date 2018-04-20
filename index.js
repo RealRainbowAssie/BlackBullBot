@@ -1,3 +1,25 @@
+const Discord = require("discord.js");
+
+const TOKEN = "NDM1ODM5MjUxMDM3NTUyNjcx.Dbe0lA.81mjftpjYlZvHgf8u5Z3Cyz-9Ew"; 
+const PREFIX = "!"
+
+function generateHex() {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+var fortunes = [
+    ":white_check_mark:`Ja`",
+    ":negative_squared_cross_mark:  `Nee`",
+    ":fingers_crossed:  `Misschien`",
+    ":negative_squared_cross_mark:  `Fuck off!`",
+    ":white_check_mark: `9/10 x wel!`",
+    ":white_check_mark: `ja best wel`",
+    ":negative_squared_cross_mark:  `NEE TOTAAL NIET!`",
+    ":negative_squared_cross_mark:  `ZWIJGRECHT A MATTIE!`",
+    ":white_check_mark: `stiekem wel ja`",
+    ":white_check_mark: **100%**",
+];
+
 var bot = new Discord.Client();
 
 var servers = {};
@@ -30,23 +52,23 @@ bot.on("guildMemberAdd", function(member) {
     if(command === "kick") {
        
         if(!message.member.roles.some(r=>["CEO", "COO"].includes(r.name)) )
-          return message.reply("Sorry, you don't have permissions to use this!");
+          return message.reply("Sorry, je hebt geen permissie!");
         
         
         let member = message.mentions.members.first() || message.guild.members.get(args[0]);
         if(!member)
-          return message.reply("Please mention a valid member of this server");
+          return message.reply("Geef een user van de server op!");
         if(!member.kickable) 
-          return message.reply("I cannot kick this user! Do they have a higher role? Do I have kick permissions?");
+          return message.reply("Ik kan deze persoon niet kicken");
         
         
         let reason = args.slice(1).join(' ');
-        if(!reason) reason = "No reason provided";
+        if(!reason) reason = "Geen reden";
         
         
         member.kick(reason)
-          .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
-        message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
+          .catch(error => message.reply(`Sorry ${message.author} is niet gekicked omdat : ${error}`));
+        message.reply(`${member.user.tag} Is gekicked door ${message.author.tag} omdat: ${reason}`);
     
       }
 
