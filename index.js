@@ -153,11 +153,12 @@ bot.on("message", message => {
       message.member.guild.roles.find("name", "Nibber").delete();
       message.channel.sendMessage("Verwijderd!")
       break;
+      
+    case "ms":
+        const m = message.channel.send("Ping?");
+        m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
 });
 
 
 bot.login(TOKEN).catch(console.log);
-
-
-
