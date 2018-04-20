@@ -121,7 +121,7 @@ bot.on("message", message => {
       message.channel.sendEmbed(embed);
       break;
 
-      case "social media":
+      case "socialmedia":
       var embed = new Discord.RichEmbed()
         .addField("Instagram", ":camera: https://instagram.com/asmardjowi", true)
         .setDescription("Volg me op insta voor wat mooie foto's van mijn gezicht!")
