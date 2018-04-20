@@ -84,8 +84,8 @@ bot.on("message", message => {
         .setThumbnail(bot.user.displayAvatarURL)
       message.channel.sendEmbed(embed);
       break;
-    case "kick":
-      if (!message.member.roles.some(r => ["CEO", "COO"].includes(r.name))) return message.reply("Sorry, je hebt geen permissie!");
+      case "kick":
+      if (!message.member.roles.some(r => ["CEO", "COO"].includes(r.name))) return richembed("Error",":x: Sorry je hebt geen permisie","0xff00ff",message);
 
 
       let member = message.mentions.members.first() || message.guild.members.get(args[0]);
@@ -104,11 +104,12 @@ bot.on("message", message => {
       message.reply(`${member.user.tag} :white_check_mark:  Is gekicked door ${message.author.tag} omdat: ${reason}`);
       break;
 
-      if(command === "ban") {
-        
+      
+      case "ban":   
         if(!message.member.roles.some(r=>["CEO", "COO"].includes(r.name))) return message.reply("Sorry, je hebt geen permissie!");
         
-        let member = message.mentions.members.first();
+
+        let member = message.mentions.members.first() || message.guild.members.get(args[0]);
         if(!member)
           return message.reply("Geef een user van de server op!");
         if(!member.bannable) 
@@ -121,7 +122,7 @@ bot.on("message", message => {
           .catch(error => message.reply(`:negative_squared_cross_mark: Sorry ${message.author} is niet gebanned omdat : ${error}`));
         message.reply(`${member.user.tag} :white_check_mark:  Is gebanned door ${message.author.tag} omdat: ${reason}`);
         break;
-      }
+      
 
     case "commands":
       var embed = new Discord.RichEmbed()
