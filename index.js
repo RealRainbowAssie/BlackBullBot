@@ -85,7 +85,7 @@ bot.on("message", message => {
       message.channel.sendEmbed(embed);
       break;
     case "kick":
-      if (!message.member.roles.some(r => ["CEO", "COO"].includes(r.name))) return message.reply(":raised_hand: Sorry, je hebt geen permissie!");
+      if (!message.member.roles.some(r => ["CEO", "COO", "FOUNDER", "H - ADMIN", "ADMIN"].includes(r.name))) return message.reply(":raised_hand: Sorry, je hebt geen permissie!");
 
 
       let member = message.mentions.members.first() || message.guild.members.get(args[0]);
@@ -148,3 +148,4 @@ bot.on("message", message => {
 
 
 bot.login(TOKEN).catch(console.log);
+
