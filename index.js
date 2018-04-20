@@ -112,7 +112,7 @@ bot.on("message", message => {
         .addField("Meer commands?", "Als jij wat mist in de bot geef het dan aan dan kijken wij voor mogelijk heden!", true)
         .setColor(0x42E8F3)
         .setTimestamp()
-        .setFooter("BlackBullBot v.1.0.2!")
+        .setFooter("BlackBullBot v.1.0.2!©")
         .setThumbnail(bot.user.displayAvatarURL)
         
       message.channel.sendEmbed(embed);
@@ -127,7 +127,7 @@ bot.on("message", message => {
         .addField("Kick", "Type !kick <user> <reden> - Hiermee kick je een bot (hiervoor heb je een speciale rol nodig!)")
         .setColor(0x42E8F3)
         .setTimestamp()
-        .setFooter("BlackBullBot v.1.0.2!")
+        .setFooter("BlackBullBot v.1.0.2!©")
         .setThumbnail(bot.user.displayAvatarURL)
         .setTimestamp()
       message.channel.sendEmbed(embed);
@@ -138,7 +138,7 @@ bot.on("message", message => {
         .addField("Open Bots", "Binnenkort hebben wij ook bot die iedereen kan gebruiken!", true)
         .setColor(0x42E8F3)
         .setTimestamp()
-        .setFooter("BlackBullBot v.1.0.2!")
+        .setFooter("BlackBullBot v.1.0.2!©")
         .setThumbnail(bot.user.displayAvatarURL)
         
       message.channel.sendEmbed(embed);
@@ -158,4 +158,6 @@ bot.on("message", message => {
 
 
 bot.login(TOKEN).catch(console.log);
+
+
 
