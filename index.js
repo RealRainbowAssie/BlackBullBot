@@ -8,16 +8,16 @@ function generateHex() {
 }
 
 var fortunes = [
-    "`Ja`",
-    "`Nee`",
-    "`Misschien`",
-    "`Fuck off!`",
-    "`9/10 x wel!`",
-    "`ja best wel`",
-    "`NEE TOTAAL NIET!`",
-    "`ZWIJGRECHT A MATTIE!`",
-    "`stiekem wel ja`",
-    "**100%**",
+    ":white_check_mark:`Ja`",
+    ":negative_squared_cross_mark:  `Nee`",
+    ":fingers_crossed:  `Misschien`",
+    ":negative_squared_cross_mark:  `Fuck off!`",
+    ":white_check_mark: `9/10 x wel!`",
+    ":white_check_mark: `ja best wel`",
+    ":negative_squared_cross_mark:  `NEE TOTAAL NIET!`",
+    ":negative_squared_cross_mark:  `ZWIJGRECHT A MATTIE!`",
+    ":white_check_mark: `stiekem wel ja`",
+    ":white_check_mark: **100%**",
 ];
 
 var bot = new Discord.Client();
