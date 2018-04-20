@@ -1,25 +1,3 @@
-const Discord = require("discord.js");
-
-const TOKEN = "NDM1ODM5MjUxMDM3NTUyNjcx.Dbe0lA.81mjftpjYlZvHgf8u5Z3Cyz-9Ew"; 
-const PREFIX = "!"
-
-function generateHex() {
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
-}
-
-var fortunes = [
-    ":white_check_mark:`Ja`",
-    ":negative_squared_cross_mark:  `Nee`",
-    ":fingers_crossed:  `Misschien`",
-    ":negative_squared_cross_mark:  `Fuck off!`",
-    ":white_check_mark: `9/10 x wel!`",
-    ":white_check_mark: `ja best wel`",
-    ":negative_squared_cross_mark:  `NEE TOTAAL NIET!`",
-    ":negative_squared_cross_mark:  `ZWIJGRECHT A MATTIE!`",
-    ":white_check_mark: `stiekem wel ja`",
-    ":white_check_mark: **100%**",
-];
-
 var bot = new Discord.Client();
 
 var servers = {};
@@ -66,7 +44,7 @@ bot.on("guildMemberAdd", function(member) {
         if(!reason) reason = "No reason provided";
         
         
-        await member.kick(reason)
+        member.kick(reason)
           .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
         message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
     
