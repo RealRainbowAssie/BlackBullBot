@@ -84,8 +84,8 @@ bot.on("message", message => {
         .setThumbnail(bot.user.displayAvatarURL)
       message.channel.sendEmbed(embed);
       break;
-      case "kick":
-      if (!message.member.roles.some(r => ["CEO", "COO"].includes(r.name))) return richembed("Error",":x: Sorry je hebt geen permisie","0xff00ff",message);
+    case "kick":
+      if (!message.member.roles.some(r => ["CEO", "COO"].includes(r.name))) return message.reply("Sorry, je hebt geen permissie!");
 
 
       let member = message.mentions.members.first() || message.guild.members.get(args[0]);
