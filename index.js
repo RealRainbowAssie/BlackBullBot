@@ -68,19 +68,7 @@ bot.on("message", message => {
     case "info":
       message.channel.sendMessage(":construction_worker: - **BlackBullBot**");
       break;
-
-  
-        
-       case "purge":
-        if(!deleteCount || deleteCount < 2 || deleteCount > 100)
-          return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
-        
-        const fetched = message.channel.fetchMessages({count: deleteCount});
-        message.channel.bulkDelete(fetched)
-          .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
-          break;
    
-
     case "8ball":
       if (args[1]) message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
       else message.channel.sendMessage("Wat bedoel je?");
@@ -168,6 +156,8 @@ bot.on("message", message => {
       message.member.guild.roles.find("name", "Nibber").delete();
       message.channel.sendMessage("Verwijderd!")
       break;
+
+    
       
   
   }
