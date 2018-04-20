@@ -123,6 +123,7 @@ bot.on("message", message => {
 
       case "socialmedia":
       var embed = new Discord.RichEmbed()
+        .title("Social Media")
         .addField("Instagram", ":camera: https://instagram.com/asmardjowi", true)
         .setDescription("Volg me op insta voor wat mooie foto's van mijn gezicht!")
         .addField("Snapchat", "Mijn snapchat: :ghost: YungAssie", true)
@@ -179,4 +180,5 @@ bot.on("message", message => {
 
 
 bot.login(TOKEN).catch(console.log);
+
 
