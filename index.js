@@ -111,7 +111,7 @@ bot.on("message", message => {
       let member = message.mentions.members.first() || message.guild.members.get(args[0]);
       if (!member)
         return message.reply("Geef een user van de server op!");
-      if (!member.kickable)
+      if (!member.bannable)
         return message.reply("Ik kan deze persoon niet bannen!");
 
 
@@ -119,7 +119,7 @@ bot.on("message", message => {
       if (!reason) reason = "Geen reden";
 
 
-      member.kick(reason)
+      member.ban(reason)
         .catch(error => message.reply(`:negative_squared_cross_mark: Sorry ${message.author} is niet gebanned omdat : ${error}`));
       message.reply(`${member.user.tag} :white_check_mark:  Is gebanned door ${message.author.tag} omdat: ${reason}`);
       break;
