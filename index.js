@@ -58,12 +58,6 @@ bot.on("message", function(message) {
 
     var args = message.content.substring(PREFIX.length).split(" ");
 
-    if(command === "kick") {
-        let member = message.mentions.members.first();
-        let reason = args.slice(1).join(" ");
-        member.kick(reason);
-      }
-
     switch (args[0].toLocaleLowerCase()) {
        case "ping":
             message.channel.sendMessage("Pong!");
