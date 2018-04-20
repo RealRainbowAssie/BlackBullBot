@@ -155,7 +155,7 @@ bot.on("message", message => {
       break;
       
     case "ms":
-        const m = message.channel.send("Ping?");
+        const m = message.channel.send("ms");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
 });
