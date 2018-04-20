@@ -63,8 +63,9 @@ bot.on("message", message => {
       message.channel.sendMessage("Pong!");
       break;
     case "info":
-      message.channel.sendMessage("`Ik ben BlackBullBot`");
+      message.channel.sendMessage(":construction_worker: - **BlackBullBot**");
       break;
+
     case "8ball":
       if (args[1]) message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
       else message.channel.sendMessage("Wat bedoel je?");
@@ -119,6 +120,8 @@ bot.on("message", message => {
         .addField("8ball", "Type !8ball <vraag> - De bot geeft antwoord op je vraag! ", true)
         .addField("Ping - Pong", "Type !ping en de bot reageerd - Pong!", true)
         .addField("Commands", "Type !commands en de bot geeft je wat commands wat we hebben")
+        .addField("Info", "Type !info voor wat korte informatie over de bot!" )
+        .addField("Kick", "Type !kick <user> <reden> - Hiermee kick je een bot (hiervoor heb je een speciale rol nodig!)")
         .setColor(0x42E8F3)
         .setFooter("BlackBullBot v.1.0.2!")
         .setThumbnail(bot.user.displayAvatarURL)
@@ -148,6 +151,4 @@ bot.on("message", message => {
 
 
 bot.login(TOKEN).catch(console.log);
-
-
 
